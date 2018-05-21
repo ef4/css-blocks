@@ -1,7 +1,20 @@
 {
-  "version": "0.18.0",
+  "version": "0.19.0",
   "packages": [
     "packages/@css-blocks/*"
+  ],
+  "command": {
+    "publish": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "message": "chore(release): Publish %s"
+    }
+  },
+  "ignoreChanges": [
+    "**/test/**",
+    "**/*.md",
+    "**/ts*.json",
+    "**/*config*.json"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true

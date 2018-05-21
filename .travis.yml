@@ -7,6 +7,7 @@ language: node_js
 node_js:
   - "8"
   - "9"
+  - "10"
 
 env:
   - CXX=g++-4.8
@@ -15,10 +16,16 @@ addons:
     chrome: stable
 
 before_install:
-  - npm install -g lerna@3.0.0-beta.0 yarn
-  - ./scripts/checkout-opticss.sh ../opticss
+  - npm install -g lerna@next yarn
+  - ./scripts/if-opticss-dev.sh ./scripts/checkout-opticss.sh ../opticss
+  - ./scripts/if-opticss-dev.sh ./scripts/link-to-opticss.js --file ../opticss
 
 install:
   - lerna bootstrap --registry=https://registry.npmjs.org/
 
 script: lerna run test
+
+cache:
+  yarn: true
+  directories:
+    - ~/.npm
